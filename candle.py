@@ -10,7 +10,7 @@ from digitalio import DigitalInOut, Direction
 import adafruit_dotstar
 
 SAMPLE_COUNT = 5
-FLARE_THRESHOLD = 256
+FLARE_THRESHOLD = 512
 BRIGHTNESS_BASE = 8172
 FLICKER_RANGE = 5120
 FADE_DELAY_SECS = 0.01
@@ -60,7 +60,7 @@ while smooth_light_level(SAMPLE_COUNT) - initial_level < FLARE_THRESHOLD:
     else:
         progress_led.value = True
     time.sleep(FLARE_DELAY_SECS)
-    
+
 status_led[0] = (0, 255, 0)
 progress_led.value = True
 
@@ -79,3 +79,5 @@ print("fading")
 for fade in range(BRIGHTNESS_BASE, -1, FADE_STEP):
     led.duty_cycle = int(fade)
     time.sleep(FADE_DELAY_SECS)
+    
+status_led[0] = (30, 0, 60)
